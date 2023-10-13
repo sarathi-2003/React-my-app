@@ -9,7 +9,9 @@ function App (){
   )
   function print_the_page(){
     window.print()
+    day = new Date();
   }
+  
 }
 
 export default App;
