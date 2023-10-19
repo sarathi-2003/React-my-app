@@ -1,17 +1,22 @@
-function ADD(){
+function ADD(props){
+  // console.log(props)
   let a= 20;
   let b = 30;
   let c = a+b;
+   
   return(
-    <p>
-    {a} plus {b} = {c}
-  </p>  
+    // <p>{a} plus {b} = {c} </p> 
+     <div>
+      Hello { props.username }
+    </div>
+    
   )
 }
 
 function App (){
   const day = new Date();
-  
+  let user1 = 'sarathi';
+  let user2 = 'karuna';
   console.log(day);
   return(
    <div>
@@ -19,12 +24,9 @@ function App (){
    <div>
    <button onClick={print_the_page}>print</button>
    </div>
-
-   <ADD />
-   <ADD />
-   <ADD />
-   <ADD />
-   <ADD />
+   <ADD username ={user1} />
+   <ADD username ={user2} />
+   
    </div>       
     
   )
