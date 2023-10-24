@@ -1,39 +1,31 @@
-import React from 'react'
+import React from "react";
+import { Component } from "react";
 
-import { Component } from 'react';
-
-class Hi extends Component{
+ class App extends Component(){
     constructor(props){
         super(props)
+
         this.state = {
-            count:0,
+          isInCart: true
         }
+        
+       
     }
-    increment = () => {
+    handleAddToCartButtonClick = () => {
         this.setState({
-          count : this.state.count + 1,
-        })
-    }
-    decrement = () =>{
-        this.setState({
-            count : this.state.count-1,
-        })
-    }
-    reset =()=>{
-        this.setState({
-            count:0
-        })
-    }
-    
+         isInCart: !this.state.isInCart,
+        })       
+ 
+         }
     render(){
-         return(
-            <div>
-            <p align="center">count : {this.state.count}</p>
-             <button onClick={this.increment}>Increment</button>
-             <button onClick={this.decrement}>Decrement</button>
-             <button onClick={this.reset}>Reset</button>
-          </div>
+        return(
+            <>
+               {
+                this.state.isInCart ? ( <button onClick={this.handleAddToCartButtonClick}>Add To Cart</button>):
+               (<button onClick={this.handleAddToCartButtonClick}>Remove Cart</button>)
+               }            
+            </>
         )
     }
-}
-export default Hi;
+ }
+ export default App;
