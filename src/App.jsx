@@ -1,20 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function App() {
-    const [counter,setcounter]=useState('hello');
-  function increment(){
-    setTimeout(()=>{
-        setcounter('Hipartha')
-    },1000)
-       
+    const [response, setresponse] = useState(0);
+    let fetchdata = async () =>{
+       let Response=  await fetch('https://jsonplaceholder.typicode.com/posts')
+        let data = await Response.json();
+        
+        setresponse(data);
     }
-   
+ 
+    useEffect(()=>{
+       fetchdata()
+    },[])
+
+    // console.log(response);
   return (
     <div>
-         <p> {counter}</p>
-         <button onClick={increment}>button</button>
+    <h2> API DATA</h2>
+    <ul>
+    {
+     response.map(posts =>
+        <li key={posts.id}>{ posts.title }</li>
+        )
+    }
+       </ul>
+     <p>Fetching data...</p>
+   
     </div>
   )
-  }
+}
 
-export default App
+export default App;
