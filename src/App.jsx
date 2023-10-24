@@ -1,31 +1,14 @@
-import React from "react";
-import { Component } from "react";
+import React, { useState } from 'react'
 
- class App extends Component(){
-    constructor(props){
-        super(props)
+function App() {
+    const [counter , setcounter] = useState(5);
+    setTimeout(()=>{
+        setcounter(counter + 3)
+    },1000)
+    console.log('rendering..',counter)
+  return (
+    <div>App</div>
+  )
+}
 
-        this.state = {
-          isInCart: true
-        }
-        
-       
-    }
-    handleAddToCartButtonClick = () => {
-        this.setState({
-         isInCart: !this.state.isInCart,
-        })       
- 
-         }
-    render(){
-        return(
-            <>
-               {
-                this.state.isInCart ? ( <button onClick={this.handleAddToCartButtonClick}>Add To Cart</button>):
-               (<button onClick={this.handleAddToCartButtonClick}>Remove Cart</button>)
-               }            
-            </>
-        )
-    }
- }
- export default App;
+export default App;
