@@ -1,33 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
 function App() {
-    const [response, setresponse] = useState(0);
-    let fetchdata = async () =>{
-       let Response=  await fetch('https://jsonplaceholder.typicode.com/posts')
-        let data = await Response.json();
-        
-        setresponse(data);
-    }
- 
-    useEffect(()=>{
-       fetchdata()
-    },[])
+    const [count,setcount] = useState(0);
 
-    // console.log(response);
+    useEffect(()=>{
+    document.title=('count:${count}')
+    },[count])
+  function handleclick (){
+    setcount(count+1)
+ }
+ console.log(count)
   return (
     <div>
-    <h2> API DATA</h2>
-    <ul>
-    {
-     response.map(posts =>
-        <li key={posts.id}>{ posts.title }</li>
-        )
-    }
-       </ul>
-     <p>Fetching data...</p>
-   
+        <button onClick={handleclick}>button</button>
     </div>
   )
 }
 
-export default App;
+export default App
