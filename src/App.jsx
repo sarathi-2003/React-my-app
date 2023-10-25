@@ -1,20 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+
+function Grandchild (props){
+    // console.log(props);
+    return(
+        <div>
+            <h3 key={ParentData.id}> Grandchild:{props}</h3>
+        </div>
+    )
+}
+
+function Childcomponent (props){
+console.log(props);
+return(
+    <div>
+        <h2 key={ParentData.id}>Childcomponent:{ props }</h2>
+        <Grandchild props = {props}/>
+    </div>
+)
+}
 
 function App() {
-    const [count,setcount] = useState(0);
-
-    useEffect(()=>{
-    document.title=('count:${count}')
-    },[count])
-  function handleclick (){
-    setcount(count+1)
- }
- console.log(count)
+    const ParentData =[ {
+        id:1,
+        name:'partha'},
+    {
+        id:2,
+        name:'ebi'
+    }];
   return (
     <div>
-        <button onClick={handleclick}>button</button>
+        <h1>Parent Components:{ParentData}</h1>
+        <Childcomponent  ParentData = { ParentData }/>
     </div>
   )
 }
 
-export default App
+export default App;
