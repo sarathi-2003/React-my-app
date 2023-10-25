@@ -1,37 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+function childcomponent({handleData}){
+    let message = 'hello partha'
+    sentdata=()=>{
+        handleData(message);
+    }
 
-function Grandchild (props){
-    // console.log(props);
     return(
-        <div>
-            <h3 key={ParentData.id}> Grandchild:{props}</h3>
-        </div>
+     <div>
+        <button onClick={sentdata}>sentDataTopPrent</button>
+     </div>
     )
 }
 
-function Childcomponent (props){
-console.log(props);
-return(
-    <div>
-        <h2 key={ParentData.id}>Childcomponent:{ props }</h2>
-        <Grandchild props = {props}/>
-    </div>
-)
-}
-
 function App() {
-    const ParentData =[ {
-        id:1,
-        name:'partha'},
-    {
-        id:2,
-        name:'ebi'
-    }];
+    const [DataFromchild,setDataFromchild] = useState('');
+ function handleData(message){
+    setDataFromchild(message)
+  }
   return (
     <div>
-        <h1>Parent Components:{ParentData}</h1>
-        <Childcomponent  ParentData = { ParentData }/>
-    </div>
+        <h1>parent component : {DataFromchild}</h1>
+           <childcomponent  Data={handleData}  />
+  </div>
   )
 }
 
