@@ -1,24 +1,22 @@
 import React, { useRef } from 'react'
 
 function App() {
-    const inputRef = useRef(null)
-    console.log(inputRef)
-   
-    const handlClick=()=>{
-      inputRef.current.focus();
-      }
+  const bodyRef= useRef(document.body);
+const changeColor =()=>{
+  // console.log('color change...')
+  // console.log(buttonRef.current)
+  const Colors = ['red','blue','green','yellow','orange','purple','black','white','grey','pink']
+  const randomColor = Colors[Math.floor(Math.random()*10)]
+  console.log(randomColor)
+  bodyRef.current.style.backgroundColor=randomColor;
 
+}
   return (
     <div>
-      <input
-        type='input'
-        placeholder='Type your name'
-        ref={inputRef}
-      />
-      <button onClick={handlClick}>Focus Button</button>
-      <p>print the name:{handlClick}</p>
-    </div>  
+      <h1>Background Color Change</h1>
+      <button onClick={changeColor} ref={bodyRef}>Change Color</button>
+    </div>
   )
 }
 
-export default App
+export default App;
