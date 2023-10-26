@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from 'react'
+
+import React, { useRef } from 'react'
 
 function App() {
-    const [response, setresponse] = useState(0);
-    let fetchdata = async () =>{
-       let Response=  await fetch('https://jsonplaceholder.typicode.com/posts')
-        let data = await Response.json();
-        
-        setresponse(data);
-    }
- 
-    useEffect(()=>{
-       fetchdata()
-    },[])
+    const inputRef = useRef(null)
+    console.log(inputRef)
+   
+    const handlClick=()=>{
+      inputRef.current.focus();
+    
 
-    // console.log(response);
+    }
+
   return (
     <div>
-    <h2> API DATA</h2>
-    <ul>
-    {response&&
-     response.map(posts =>
-        <li key={posts.id}>{ posts.title }</li>
-        )
-    }
-       </ul>
-     <p>Fetching data...</p>
-   
-    </div>
+      <input
+        type='input'
+        placeholder='Type your name'
+        ref={inputRef}
+      />
+      <button onClick={handlClick}>Focus Button</button>
+      <p>print the name:{handlClick}</p>
+    </div>  
   )
 }
 
-export default App;
+export default App
