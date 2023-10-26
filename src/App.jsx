@@ -1,27 +1,32 @@
-import React, { useState } from 'react'
-function childcomponent({handleData}){
-    let message = 'hello partha'
-    sentdata=()=>{
-        handleData(message);
-    }
-
-    return(
-     <div>
-        <button onClick={sentdata}>sentDataTopPrent</button>
-     </div>
-    )
-}
+import React, { useEffect, useState } from 'react'
 
 function App() {
-    const [DataFromchild,setDataFromchild] = useState('');
- function handleData(message){
-    setDataFromchild(message)
-  }
+    const [response, setresponse] = useState(0);
+    let fetchdata = async () =>{
+       let Response=  await fetch('https://jsonplaceholder.typicode.com/posts')
+        let data = await Response.json();
+        
+        setresponse(data);
+    }
+ 
+    useEffect(()=>{
+       fetchdata()
+    },[])
+
+    // console.log(response);
   return (
     <div>
-        <h1>parent component : {DataFromchild}</h1>
-           <childcomponent  Data={handleData}  />
-  </div>
+    <h2> API DATA</h2>
+    <ul>
+    {response&&
+     response.map(posts =>
+        <li key={posts.id}>{ posts.title }</li>
+        )
+    }
+       </ul>
+     <p>Fetching data...</p>
+   
+    </div>
   )
 }
 
