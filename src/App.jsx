@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react'
 
 function App() {
@@ -7,9 +6,7 @@ function App() {
    
     const handlClick=()=>{
       inputRef.current.focus();
-    
-
-    }
+      }
 
   return (
     <div>
